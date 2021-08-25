@@ -1,33 +1,53 @@
-const API_KEY = "AIzaSyD1lyK95j4aH83N2IllFZhLb_8ODBjsI6Q";
-
+// This sample uses the Place Autocomplete widget to allow the user to search
+// for and select a place. The sample then displays an info window containing
+// the place ID and other information about the place that the user has
+// selected.
+// This example requires the Places library. Include the libraries=places
+// parameter when you first load the API. For example:
+// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
-        zoom:3,
-        center: {
-            lat: 46.619261,
-            lng: -33.134766
-        }
-    }); 
-
-
-var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-var locations = [
-    { lat: 40.785091, lng: -73.968285 },
-    { lat: 41.084045, lng: -73.874245 },
-    { lat: 40.754932, lng: -73.984016 }
-];
-
-var markers = locations.map(function(location, i){
-    return new google.maps.Marker({
-        position: location,
-        label: labels[i % labels.length]
-    });
-});
-
-var markerCluster = new MarkerClusterer(map, markers, {
-    imagePath:
-      "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 51.0900, lng: -115.3442 },
+    zoom: 3,
   });
+  const input = document.getElementById("pac-input");
+  const autocomplete = new google.maps.places.Autocomplete(input);
+  autocomplete.bindTo("bounds", map);
+  // Specify just the place data fields that you need.
+  autocomplete.setFields(["place_id", "geometry", "formatted_address", "name", "photos"]);
+  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+  const infowindow = new google.maps.InfoWindow();
+  const infowindowContent = document.getElementById("infowindow-content");
+  infowindow.setContent(infowindowContent);
+  const marker = new google.maps.Marker({ map: map });
+  marker.addListener("click", () => {
+    infowindow.open(map, marker);
+  });
+  autocomplete.addListener("place_changed", () => {
+    infowindow.close();
+    const place = autocomplete.getPlace();
 
+    if (!place.geometry || !place.geometry.location) {
+      return;
+    }
+
+    if (place.geometry.viewport) {
+      map.fitBounds(place.geometry.viewport);
+    } else {
+      map.setCenter(place.geometry.location);
+      map.setZoom(17);
+    }
+    // Set the position of the marker using the place ID and location.
+    marker.setPlace({
+      placeId: place.place_id,
+      location: place.geometry.location,
+    });
+    marker.setVisible(true);
+    infowindowContent.children.namedItem("place-name").textContent = place.name;
+    infowindowContent.children.namedItem("place-id").textContent =
+      place.place_id;
+    infowindowContent.children.namedItem("place-address").textContent =
+      place.formatted_address;
+    infowindow.open(map, marker);
+  });
 }
