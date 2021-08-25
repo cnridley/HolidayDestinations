@@ -48,6 +48,12 @@ body {
     text-align: center;
 }
 
+.location {
+    font-size: 60px;
+    font-family: 'Arvo', serif;
+    text-align: center;
+}
+
 .option {
     font-size: 50px;
     font-family: 'Allison', cursive;

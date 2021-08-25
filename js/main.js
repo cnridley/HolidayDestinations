@@ -10,6 +10,7 @@ $(document).ready(function(){
             coldMap();
             $("#city").attr("value", "cold-city")
             $("#beach").attr("value", "cold-beach")
+            $('#beachHolidays').html("Mountains");
         }
     })
 
@@ -32,7 +33,7 @@ $(document).ready(function(){
             coldBeachMap();
             $("#culture").attr("value", "cold-beach-culture")
             $("#activities").attr("value", "cold-beach-activities")
-        }
+        } 
     })
 
     $(document).on("click", "#question-3-btn", function(){
@@ -338,13 +339,136 @@ const coldBeachLocations = [
 
 
 // if hot - beach - culture is clicked
+function hotBeachCulturesMap() {
+    const SEA = { lat: 15.870032, lng: 100.992538 };
+  // The map, centered at Uluru
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 4,
+    center: SEA,
+  });
+  // The marker, positioned at Uluru
+  const marker = new google.maps.Marker({
+    position: SEA,
+    map: map,
+  });
+
+  $('.location').html("SOUTH EAST ASIA!")
+}
 
 //if hot - beach - activity is clicked 
+function hotBeachActivitiesMap(){
+    const aus = { lat: -25.274399, lng: 133.775131 };
+  // The map, centered at Uluru
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 4,
+    center: aus,
+  });
+  // The marker, positioned at Uluru
+  const marker = new google.maps.Marker({
+    position: aus,
+    map: map,
+  });
+
+  $('.location').html("AUSTRALIA!")
+}
 
 // if hot - ciy - culture is clicked
+function hotCityCultureMap() {
+    const paris = { lat: 48.856613, lng: 2.352222 };
+  // The map, centered at Uluru
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 4,
+    center: paris,
+  });
+  // The marker, positioned at Uluru
+  const marker = new google.maps.Marker({
+    position: paris,
+    map: map,
+  });
+
+  $('.location').html("PARIS!")
+}
 
 // if hot - ciy - activity is clicked
+function hotCityActivitiesMap() {
+    const Barcelona = { lat: 41.385063, lng: 2.173404 };
+  // The map, centered at Uluru
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 4,
+    center: Barcelona,
+  });
+  // The marker, positioned at Uluru
+  const marker = new google.maps.Marker({
+    position: Barcelona,
+    map: map,
+  });
 
+  $('.location').html("BARCELONA!")
+}
 
+//if cold - city - culture
+function coldCityCultureMap() {
+    const london = { lat: 51.509597, lng: -0.133199 };
+  // The map, centered at Uluru
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 4,
+    center: london,
+  });
+  // The marker, positioned at Uluru
+  const marker = new google.maps.Marker({
+    position: london,
+    map: map,
+  });
 
+  $('.location').html("LONDON!")
+}
+//if cold - city - activities
+function coldCityActivitiesMap() {
+    const Alaska = { lat: 64.211755, lng: -149.493703 };
+  // The map, centered at Uluru
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 4,
+    center: Alaska,
+  });
+  // The marker, positioned at Uluru
+  const marker = new google.maps.Marker({
+    position: Alaska,
+    map: map,
+  });
+
+  $('.location').html("ALASKA")
+}
+
+// if cold- beach - culture 
+function coldBeachCultureMap() {
+    const Japan = { lat: 36.221011, lng: 138.253337 };
+  // The map, centered at Uluru
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 4,
+    center: Japan,
+  });
+  // The marker, positioned at Uluru
+  const marker = new google.maps.Marker({
+    position: Japan,
+    map: map,
+  });
+
+  $('.location').html("JAPAN!")
+}
+// if cold - beach - activities 
+function coldBeachActivitiesMap() {
+    const rockies = { lat: 53.933270, lng: -116.576508 };
+  // The map, centered at Uluru
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 4,
+    center: rockies,
+  });
+  // The marker, positioned at Uluru
+  const marker = new google.maps.Marker({
+    position: rockies,
+    map: map,
+  });
+
+  $('.location').html("THE ROCKIES!")
+}
 
